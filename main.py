@@ -93,3 +93,4 @@ if __name__ == '__main__':
                 print()
 
         print()
+    user_repo.delete_by_id(b1.id_)  # 'on delete cascade' will be implemented in the actual application
