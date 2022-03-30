@@ -1,11 +1,8 @@
-from blogger import Blogger
-from post import Post
-
 
 class Blog:
 
-    def __init__(self, id_, title, description, date_created, last_posted, tags, category, total_follows,
-                 owner: Blogger, posts: list[Post]):
+    def __init__(self, title, description, date_created, last_posted, tags, category, total_follows,
+                 owner: 'Blogger', posts: list['Post'] = None, id_=None):
         self.id_ = id_
         self.title = title
         self.description = description
@@ -19,4 +16,3 @@ class Blog:
 
     def __str__(self):
         return "".join(f"{self.owner.username}'s {self.title}")
-
