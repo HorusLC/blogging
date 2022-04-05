@@ -1,6 +1,6 @@
 class User:
 
-    def __init__(self, f_name, l_name, username, password, salt, gender, email, date_reg, role,id_=None):
+    def __init__(self, f_name, l_name, username, password, salt, gender, email, date_reg, role, id_=None):
         self.role = role
         self.date_reg = date_reg
         self.email = email
@@ -11,7 +11,8 @@ class User:
         self.l_name = l_name
         self.f_name = f_name
         self.id_ = id_
+        self._module = self.__class__.__module__
+        self._class = self.__class__.__name__
 
     def __str__(self):
         return self.f_name + " " + self.l_name
-

@@ -1,8 +1,8 @@
 
 class Blog:
 
-    def __init__(self, title, description, date_created, last_posted, tags, category, total_follows,
-                 owner: 'Blogger', posts: list['Post'] = None, id_=None):
+    def __init__(self, title=None, description=None, date_created=None, last_posted=None, tags=None, category=None,
+                 owner_id = None, posts: list['Post'] = None, id_=None):
         self.id_ = id_
         self.title = title
         self.description = description
@@ -10,9 +10,10 @@ class Blog:
         self.last_posted = last_posted
         self.tags = tags
         self.category = category
-        self.total_follows = total_follows
-        self.owner = owner
+        self.owner_id = owner_id
         self.posts = posts
+        self._module = self.__class__.__module__
+        self._class = self.__class__.__name__
 
     def __str__(self):
-        return "".join(f"{self.owner.username}'s {self.title}")
+        return self.title

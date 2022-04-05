@@ -1,9 +1,8 @@
-
-
 class Post:
 
-    def __init__(self, title, content, date_created, last_edited, tags, gallery, blog_: 'entity.blog.Blog',
-                 comments: list['entity.comment.Comment'], id_=None):
+    def __init__(self, title=None, content=None, date_created=None, last_edited=None, tags=None, gallery=None,
+                 blog_id=None,
+                 comments=None, id_=None):
         self.id_ = id_
         self.title = title
         self.content = content
@@ -11,8 +10,10 @@ class Post:
         self.last_edited = last_edited
         self.tags = tags
         self.gallery = gallery
-        self.blog = blog_
+        self.blog_id = blog_id
         self.comments = comments
+        self._module = self.__class__.__module__
+        self._class = self.__class__.__name__
 
     def __str__(self):
         return ''.join(f'{self.title} - {self.date_created}')

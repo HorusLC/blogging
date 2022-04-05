@@ -4,7 +4,7 @@ from services.idgenerator import IdGenerator
 class Repository:
     def __init__(self, id_generator: IdGenerator):
         self._entities: dict = {}
-        self._idGenrator = id_generator
+        self._idgenrator = id_generator
 
     def __len__(self):
         return self.count()
@@ -29,7 +29,7 @@ class Repository:
         return found
 
     def create(self, entity):
-        entity.id_ = self._idGenrator.get_next_id()
+        entity.id_ = self._idgenrator.get_next_id()
         self._entities[entity.id_] = entity
         return entity
 
@@ -50,4 +50,4 @@ class Repository:
         self._entities.clear()
 
     def add_all(self, entities_iterable):
-        self._entities.update(map(lambda entity: (entity.id, entity), entities_iterable))
+        self._entities.update(map(lambda entity: (entity.id_, entity), entities_iterable))
