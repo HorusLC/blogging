@@ -45,3 +45,9 @@ class Repository:
 
     def count(self):
         return len(self._entities)
+
+    def clear(self):
+        self._entities.clear()
+
+    def add_all(self, entities_iterable):
+        self._entities.update(map(lambda entity: (entity.id, entity), entities_iterable))
