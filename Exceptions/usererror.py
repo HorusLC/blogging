@@ -11,3 +11,13 @@ class UsernameNotFoundError(Exception):
 class IncorrectPasswordError(Exception):
     # TODO add actual implementation
     pass
+
+
+class UsernameExistsError(Exception):
+    # TODO add actual implementation
+    pass
+
+
+class EmailExistsError(Exception):
+    # TODO add actual implementation
+    pass
