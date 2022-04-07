@@ -2,7 +2,7 @@
 class Blog:
 
     def __init__(self, title=None, description=None, date_created=None, last_posted=None, tags=None, category=None,
-                 owner_id = None, posts: list['Post'] = None, id_=None):
+                 owner_id = None, id_=None):
         self.id_ = id_
         self.title = title
         self.description = description
@@ -11,7 +11,6 @@ class Blog:
         self.tags = tags
         self.category = category
         self.owner_id = owner_id
-        self.posts = posts
         self._module = self.__class__.__module__
         self._class = self.__class__.__name__
 
