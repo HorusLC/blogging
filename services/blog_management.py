@@ -2,11 +2,8 @@ from dao.blog_repo import BlogRepository
 
 
 class BlogManagementService:
-    def __init__(self, blog_repo: BlogRepository, user_repo, comment_repo, post_repo):
+    def __init__(self, blog_repo: BlogRepository):
         self.blog_repo = blog_repo
-        self.user_repo = user_repo
-        self.comment_repo = comment_repo
-        self.post_repo = post_repo
 
     def add_blog(self, blog, user_id):
         self.blog_repo.load()
