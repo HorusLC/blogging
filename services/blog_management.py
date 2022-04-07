@@ -1,9 +1,12 @@
+from Exceptions.entity_errors import EntityNotFoundError
 from dao.blog_repo import BlogRepository
+from dao.post_repo import PostRepository
 
 
 class BlogManagementService:
-    def __init__(self, blog_repo: BlogRepository):
+    def __init__(self, blog_repo: BlogRepository, post_repo: PostRepository):
         self.blog_repo = blog_repo
+        self.post_repo = post_repo
 
     def add_blog(self, blog, user_id):
         self.blog_repo.load()
@@ -17,9 +20,19 @@ class BlogManagementService:
         self.blog_repo.save()
 
     def delete_blog(self, blog):
-        self.blog_repo.load()
-        self.blog_repo.delete_by_id(blog.id_)
-        self.blog_repo.save()
+        try:
+            self.blog_repo.load()
+            self.blog_repo.delete_by_id(blog.id_)
+            for post in self.post_repo.find_all():
+                if post.blog_id == blog.id_:
+                    self.post_repo.delete_by_id(post.id_)
+
+        except EntityNotFoundError as enfe:
+            raise enfe
+
+        else:
+            self.blog_repo.save()
+            self.post_repo.save()
 
     def fetch_user_blogs(self, blogger_id):
         self.blog_repo.load()
