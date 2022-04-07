@@ -1,3 +1,4 @@
+from Exceptions.entity_errors import EntityNotFoundError
 from services.idgenerator import IdGenerator
 
 
@@ -25,7 +26,7 @@ class Repository:
     def find_by_id(self, id_):
         found = self._entities.get(id_)
         if found is None:
-            raise Exception(f'Entity with ID:{id_} not found')
+            raise EntityNotFoundError(f'Entity with ID:{id_} not found')
         return found
 
     def create(self, entity):
