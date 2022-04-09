@@ -1,0 +1,44 @@
+[
+    {
+        "role": {
+            "name": "BLOGGER",
+            "_module": "entity.user_enums",
+            "_class": "Role"
+        },
+        "date_reg": "04/10/22",
+        "email": "m",
+        "gender": 1,
+        "salt": "f27b0780c163d31ac01cc5108c035bbe",
+        "password": "0045b853681837b61397d803370cc1acb5840d38cc1963268a55a8d3c3887bfe",
+        "username": "um",
+        "l_name": "mn",
+        "f_name": "a",
+        "id_": "409e5f94-b858-11ec-88c4-c018036258c5",
+        "_module": "entity.blogger",
+        "_class": "Blogger",
+        "introduction": "intro",
+        "last_login": "04/10/22",
+        "blogs_followed": []
+    },
+    {
+        "role": {
+            "name": "BLOGGER",
+            "_module": "entity.user_enums",
+            "_class": "Role"
+        },
+        "date_reg": "04/10/22",
+        "email": "peshka",
+        "gender": 1,
+        "salt": "9212c22d4d6bffa16674e178f121fdea",
+        "password": "b0636f7f5fc859548c671edc24ae509c6d33e7c540be1232955f29c4a58275d3",
+        "username": "unamee",
+        "l_name": "ivankata",
+        "f_name": "ivanova",
+        "id_": "829bd560-b858-11ec-8dc7-c018036258c5",
+        "_module": "entity.blogger",
+        "_class": "Blogger",
+        "introduction": "introoo",
+        "last_login": "04/10/22",
+        "blogs_followed": []
+    }
+]

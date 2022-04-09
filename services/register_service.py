@@ -4,6 +4,7 @@ from Exceptions.usererror import UsernameExistsError, EmailExistsError
 from dao.blogger_repository import BloggerRepository
 from entity.blogger import Blogger
 from services.phasher import PassHasher
+from entity.user_enums import Role
 
 
 class RegistrationService:
@@ -25,7 +26,21 @@ class RegistrationService:
             raise EmailExistsError(f'The email: {email} already exists! Did you forget your password?')
         return None
 
-    def register(self, f_name, l_name, username, password, introduction, gender, email):
+    def register(self, blogger):
+        # self.check_username(blogger.username)
+        # self.check_email(blogger.email)
+        salt, pass_hash = self.hasher.hash_password(blogger.password)
+        today = date.today()
+        blogger.password = pass_hash.hex()
+        blogger.salt = salt.hex()
+        blogger.date_reg = today.strftime("%m/%d/%y")
+        blogger.last_login = today.strftime("%m/%d/%y")
+        blogger.blogs_followed = []
+        blogger.role = Role.BLOGGER
+        self.blogger_repo.create(blogger)
+        self.blogger_repo.save()
+
+    def register_fields(self, f_name, l_name, username, password, introduction, gender, email):
 
         self.check_username(username)
         self.check_email(email)
