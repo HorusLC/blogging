@@ -14,7 +14,7 @@ class UserController:
 
     def show_reg_form(self):
 
-        form = ItemForm(self.view, Blogger('', '', '', '', '', 1, '', '', '', [], '', '', ), RegisterUserCommand(self))
+        form = ItemForm(self.view, Blogger('', '', '', '', '', Gender.Male, '', '', '', [], '', '', ), RegisterUserCommand(self))
 
     def register_user(self,user):
         self.reg_service.register(user)

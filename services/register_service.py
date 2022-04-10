@@ -27,8 +27,8 @@ class RegistrationService:
         return None
 
     def register(self, blogger):
-        # self.check_username(blogger.username)
-        # self.check_email(blogger.email)
+        self.check_username(blogger.username)
+        self.check_email(blogger.email)
         salt, pass_hash = self.hasher.hash_password(blogger.password)
         today = date.today()
         blogger.password = pass_hash.hex()

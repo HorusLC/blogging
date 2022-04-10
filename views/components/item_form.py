@@ -43,7 +43,7 @@ class ItemForm(Toplevel):
                 self.types.append("float")
             elif isinstance(attr, (tuple, list)):
                 self.types.append("list")
-            elif isinstance(attr,enum.Enum):
+            elif isinstance(attr, enum.Enum):
                 self.types.append("Enum")
             else:
                 self.types.append("str")
@@ -61,11 +61,12 @@ class ItemForm(Toplevel):
 
             # add entries
             if col == 'gender':
-                v = IntVar()
-                r1 = Radiobutton(self.frame, text='Male', variable=v, value=1)
+
+                model.set('1')
+                r1 = Radiobutton(self.frame, text='Male', variable=model, value='1')
                 r1.grid(column=1, row=i, sticky=W)
-                r2 = Radiobutton(self.frame, text='Female', variable=v, value=2)
-                r2.grid(column=1, row=i, sticky=W,padx=100)
+                r2 = Radiobutton(self.frame, text='Female', variable=model, value='2')
+                r2.grid(column=1, row=i, sticky=W, padx=100)
             else:
                 entry = ttk.Entry(self.frame, textvariable=model)
                 entry.grid(column=1, row=i, sticky=EW)
@@ -105,11 +106,14 @@ class ItemForm(Toplevel):
         for i, col in enumerate(self.columns):
             str_val = self.models[i].get()
             if self.types[i] == "int":
-                value = int(str_val)
+                if col == 'gender':
+                    value = Gender(int(str_val))
+                else:
+                    value = int(str_val)
+            elif self.types[i] == "Enum":
+                value = Gender(int(str_val))
             elif self.types[i] == "float":
                 value = float(str_val)
-            elif self.types[i] == "Enum":
-                value=int(str_val)
             elif self.types[i] == "str":
                 value = str_val
             elif self.types[i] == "list":
