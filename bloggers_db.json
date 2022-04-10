@@ -48,5 +48,30 @@
         "introduction": "hi, im natalia and i love books",
         "last_login": "04/10/22",
         "blogs_followed": []
+    },
+    {
+        "role": {
+            "name": "BLOGGER",
+            "_module": "entity.user_enums",
+            "_class": "Role"
+        },
+        "date_reg": "04/10/22",
+        "email": "dk21@abv.bg",
+        "gender": {
+            "name": "Male",
+            "_module": "entity.user_enums",
+            "_class": "Gender"
+        },
+        "salt": "e1deaa3db89098432f4576a8d2a80d2b",
+        "password": "c767e375457e5f31cfa3c182df3b66769775106bf1fa0ddece11f22ab995d0bb",
+        "username": "dk21",
+        "l_name": "lname",
+        "f_name": "fname",
+        "id_": "58cc9d78-b8e8-11ec-b364-c018036258c5",
+        "_module": "entity.blogger",
+        "_class": "Blogger",
+        "introduction": "introo",
+        "last_login": "04/10/22",
+        "blogs_followed": []
     }
 ]

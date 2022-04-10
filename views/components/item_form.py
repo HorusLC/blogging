@@ -83,11 +83,11 @@ class ItemForm(Toplevel):
         buttons_frame = ttk.Frame(self.frame, padding="20 10 20 10")
         buttons_frame.grid(column=0, row=len(self.columns), columnspan=2, sticky=NSEW)
 
-        self.add_button = ttk.Button(buttons_frame, text="Register", padding=10, command=self.submit)
-        self.add_button.grid(column=1, row=0, sticky=NE, padx=40, pady=20)
+        self.reg_button = ttk.Button(buttons_frame, text="Register", padding=10, command=self.submit)
+        self.reg_button.grid(column=1, row=0, sticky=NE, padx=40, pady=20)
 
-        self.add_button = ttk.Button(buttons_frame, text="Reset", padding=10, command=self.reset)
-        self.add_button.grid(column=2, row=0, sticky=NE, padx=40, pady=20)
+        self.reset_button = ttk.Button(buttons_frame, text="Reset", padding=10, command=self.reset)
+        self.reset_button.grid(column=2, row=0, sticky=NE, padx=40, pady=20)
 
         rows, cols = buttons_frame.grid_size()
         for col in range(cols):
