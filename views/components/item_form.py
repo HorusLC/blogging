@@ -68,7 +68,10 @@ class ItemForm(Toplevel):
                 r2 = Radiobutton(self.frame, text='Female', variable=model, value='2')
                 r2.grid(column=1, row=i, sticky=W, padx=100)
             else:
-                entry = ttk.Entry(self.frame, textvariable=model)
+                symbol_shown = None
+                if col == 'password':
+                    symbol_shown = '*'
+                entry = ttk.Entry(self.frame, textvariable=model, show=symbol_shown)
                 entry.grid(column=1, row=i, sticky=EW)
                 self.entries.append(entry)
 

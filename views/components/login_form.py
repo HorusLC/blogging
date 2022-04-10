@@ -25,7 +25,7 @@ class LoginForm(Toplevel):
         email_entry = ttk.Entry(self.frame, textvariable=email_model, justify=LEFT)
         email_entry.grid(column=2, row=1, sticky=EW, padx=5)
         self.models.append(email_model)
-        password_entry = ttk.Entry(self.frame, textvariable=password_model, justify=LEFT)
+        password_entry = ttk.Entry(self.frame, textvariable=password_model, justify=LEFT, show='*')
         password_entry.grid(column=2, row=2, sticky=EW, padx=5)
         self.models.append(password_model)
         self.login_button = ttk.Button(self.frame, text="Sign in", padding=10, command=self.signin)
