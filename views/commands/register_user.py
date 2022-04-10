@@ -3,4 +3,4 @@ class RegisterUserCommand:
         self.controller = controller
 
     def __call__(self, user):
-        self.controller.register_user(user)
+        return self.controller.register_user(user)

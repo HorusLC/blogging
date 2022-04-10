@@ -1,3 +1,4 @@
+import re
 from datetime import date
 
 from Exceptions.usererror import UsernameExistsError, EmailExistsError
@@ -26,6 +27,19 @@ class RegistrationService:
             raise EmailExistsError(f'The email: {email} already exists! Did you forget your password?')
         return None
 
+    def validate_user_data(self, blogger):
+        error_list = list()
+        if not re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{8,}', blogger.password):
+            error_list.append(
+                'Password must be 8 chars long, must contain lower letter,upper letter, digit and special character')
+        if not re.match('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', blogger.email):
+            error_list.append('Invalid email format!')
+        if len(blogger.f_name) > 15 or len(blogger.f_name) < 2:
+            error_list.append('Non valid first name!')
+        if len(blogger.l_name) > 15 or len(blogger.l_name) < 2:
+            error_list.append('Non valid last name!')
+        return error_list
+
     def register(self, blogger):
         self.check_username(blogger.username)
         self.check_email(blogger.email)
@@ -37,7 +51,7 @@ class RegistrationService:
         blogger.last_login = today.strftime("%m/%d/%y")
         blogger.blogs_followed = []
         blogger.role = Role.BLOGGER
-        self.blogger_repo.create(blogger)
+        blogger = self.blogger_repo.create(blogger)
         self.blogger_repo.save()
 
     def register_fields(self, f_name, l_name, username, password, introduction, gender, email):

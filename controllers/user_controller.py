@@ -1,6 +1,6 @@
 import tkinter.messagebox
 
-from Exceptions.usererror import EmailNotFoundError, IncorrectPasswordError
+from Exceptions.usererror import EmailNotFoundError, IncorrectPasswordError, EmailExistsError, UsernameExistsError
 from entity.blogger import Blogger
 from entity.user_enums import Gender
 from services.login_service import Login
@@ -22,7 +22,16 @@ class UserController:
                         RegisterUserCommand(self))
 
     def register_user(self, user):
-        self.reg_service.register(user)
+        try:
+            messages = self.reg_service.validate_user_data(user)
+            if len(messages) == 0:
+                self.reg_service.register(user)
+                messages.append('Successful Registration!')
+        except EmailExistsError as email_err:
+            tkinter.messagebox.showerror(title='Error', message=str(email_err))
+        except UsernameExistsError as username_err:
+            tkinter.messagebox.showerror(title='Error', message=str(username_err))
+        return messages
 
     def show_login_form(self):
         form = LoginForm(self.view, LoginUserCommand(self))
@@ -32,8 +41,8 @@ class UserController:
             user = self.login_service.try_login_email(credentials[0], credentials[1])
             print('Hello - ', user.username)
         except EmailNotFoundError as mailnotfound:
-            tkinter.messagebox.showerror(title='Error',message=str(mailnotfound))
+            tkinter.messagebox.showerror(title='Error', message=str(mailnotfound))
         except IncorrectPasswordError as wrongpassword:
-            tkinter.messagebox.showerror(title='Error',message=str(wrongpassword))
+            tkinter.messagebox.showerror(title='Error', message=str(wrongpassword))
         else:
-            tkinter.messagebox.showinfo(title='Login Successful',message=f'Hello {user.username}')
+            tkinter.messagebox.showinfo(title='Login Successful', message=f'Hello {user.username}')

@@ -1,4 +1,5 @@
 import enum
+import tkinter.messagebox
 from enum import Enum
 from tkinter import *
 from tkinter import ttk
@@ -123,8 +124,13 @@ class ItemForm(Toplevel):
                 value = [s.strip() for s in str_val.split(',')]
             setattr(result, col, value)
         print(self.command, result)
-        self.dismiss()
-        self.command(result)
+        messages = self.command(result)
+        if len(messages) == 1 and messages[0] == 'Successful Registration!':
+            tkinter.messagebox.showinfo(message=messages[0])
+            self.dismiss()
+        else:
+            for msg in messages:
+                tkinter.messagebox.showerror(title='Error!', message=msg)
 
     def reset(self):
         for i, col in enumerate(self.columns):
