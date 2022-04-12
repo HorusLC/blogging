@@ -1,6 +1,7 @@
 import tkinter.messagebox
 
 from Exceptions.usererror import EmailNotFoundError, IncorrectPasswordError, EmailExistsError, UsernameExistsError
+from controllers.home_controller import HomeController
 from entity.blogger import Blogger
 from entity.user_enums import Gender
 from services.login_service import Login
@@ -8,6 +9,7 @@ from services.register_service import RegistrationService
 from views.commands.login_user import LoginUserCommand
 from views.commands.register_user import RegisterUserCommand
 from views.components.item_form import ItemForm
+from views.components.logged_in_menu import LoggedInFrame
 from views.components.login_form import LoginForm
 
 
@@ -45,4 +47,7 @@ class UserController:
         except IncorrectPasswordError as wrongpassword:
             tkinter.messagebox.showerror(title='Error', message=str(wrongpassword))
         else:
+            self.view.pack_forget()
             tkinter.messagebox.showinfo(title='Login Successful', message=f'Hello {user.username}')
+            home_contr = HomeController(view=LoggedInFrame(self.view, command=None,user=user))
+

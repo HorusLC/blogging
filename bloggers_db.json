@@ -98,5 +98,30 @@
         "introduction": "introo",
         "last_login": "04/10/22",
         "blogs_followed": []
+    },
+    {
+        "role": {
+            "name": "BLOGGER",
+            "_module": "entity.user_enums",
+            "_class": "Role"
+        },
+        "date_reg": "04/11/22",
+        "email": "dks@abv.bg",
+        "gender": {
+            "name": "Male",
+            "_module": "entity.user_enums",
+            "_class": "Gender"
+        },
+        "salt": "697fcd24d626b1460c7e88f3b4fd926d",
+        "password": "541dbc8d4a29e3a823ff0ee5c82d82b21f670e8f25203ae6b426235423d186c8",
+        "username": "name1",
+        "l_name": "lname",
+        "f_name": "fname",
+        "id_": "d2251b5a-b9a9-11ec-bea1-c018036258c5",
+        "_module": "entity.blogger",
+        "_class": "Blogger",
+        "introduction": "intro",
+        "last_login": "04/12/22",
+        "blogs_followed": []
     }
 ]

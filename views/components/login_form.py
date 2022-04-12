@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter.ttk import Style
 
 from utils.view_settings import center_resize_window
 
@@ -9,9 +10,13 @@ class LoginForm(Toplevel):
         super().__init__(parent)
         self.parent = parent
         self.command = command
-        self.frame = ttk.Frame(self, padding="30 30 30 30")
+        style= Style()
+        style.configure('login.TFrame',background='white')
+        self.frame = ttk.Frame(self, padding="60 60 60 60",style='login.TFrame')
         self.title("Login")
-        self.frame.grid(row=0, column=0, sticky=NSEW)
+        self.frame.grid(row=0,column=0,sticky=NSEW)
+        self.grid_columnconfigure(0,weight=1)
+        self.grid_rowconfigure(0,weight=1)
         center_resize_window(self, height=200, width=300)
 
         self.models = []

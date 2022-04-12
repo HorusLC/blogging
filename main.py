@@ -14,6 +14,7 @@ from entity.blog import Blog
 from utils.view_settings import center_resize_window
 from tkinter import *
 
+from views.components.anonymous_view import AnonymousFrame
 from views.mainview import MainView
 
 if __name__ == '__main__':
@@ -28,6 +29,7 @@ if __name__ == '__main__':
 
     reg_service = RegistrationService(blogger_repo, hasher)
     user_controller = UserController(login_service, reg_service)
-    main_view = MainView(root, user_controller)
-    user_controller.view = main_view
+    main_view = MainView(root)
+    anon_frame = AnonymousFrame(main_view,user_controller)
+    user_controller.view = anon_frame
     root.mainloop()
