@@ -20,8 +20,8 @@ from views.mainview import MainView
 if __name__ == '__main__':
     root = Tk()
     center_resize_window(root, 800, 400)
-    root.columnconfigure(0, weight=1)
-    root.rowconfigure(0, weight=1)
+    #root.columnconfigure(0, weight=1)
+    #root.rowconfigure(0, weight=1)
     hasher = PassHasher()
     idgen = UuidGenerator()
     blogger_repo = BloggerRepository(idgen, 'bloggers_db.json')
@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     reg_service = RegistrationService(blogger_repo, hasher)
     user_controller = UserController(login_service, reg_service)
-    main_view = MainView(root)
-    anon_frame = AnonymousFrame(main_view,user_controller)
+    #main_view = MainView(root)
+    anon_frame = AnonymousFrame(root,user_controller)
     user_controller.view = anon_frame
     root.mainloop()

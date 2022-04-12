@@ -10,9 +10,7 @@ class LoginForm(Toplevel):
         super().__init__(parent)
         self.parent = parent
         self.command = command
-        style= Style()
-        style.configure('login.TFrame',background='white')
-        self.frame = ttk.Frame(self, padding="60 60 60 60",style='login.TFrame')
+        self.frame = ttk.Frame(self, padding="60 60 60 60")
         self.title("Login")
         self.frame.grid(row=0,column=0,sticky=NSEW)
         self.grid_columnconfigure(0,weight=1)

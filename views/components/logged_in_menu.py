@@ -10,5 +10,5 @@ class LoggedInFrame(ttk.Frame):
         #self.blog_button = ttk.Button(text='Blogs')
         #self.blog_button.grid(column=0, row=0, sticky='NSEW')
         self.name_label = ttk.Label(text='Hello, ' + user.username)
-        self.name_label.grid(column=0, row=0, sticky='EW', padx=10)
+        self.name_label.grid(column=0, row=0, sticky='NSEW')
         self.tkraise()

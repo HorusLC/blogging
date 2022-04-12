@@ -47,7 +47,8 @@ class UserController:
         except IncorrectPasswordError as wrongpassword:
             tkinter.messagebox.showerror(title='Error', message=str(wrongpassword))
         else:
-            self.view.pack_forget()
-            tkinter.messagebox.showinfo(title='Login Successful', message=f'Hello {user.username}')
-            home_contr = HomeController(view=LoggedInFrame(self.view, command=None,user=user))
-
+            # self.view.grid_forget()
+            # tkinter.messagebox.showinfo(title='Login Successful', message=f'Hello {user.username}')
+            parent = self.view.container
+            self.view.destroy()
+            home_contr = HomeController(view=LoggedInFrame(parent, command=None, user=user))

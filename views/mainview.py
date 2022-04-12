@@ -12,7 +12,8 @@ class MainView(ttk.Frame):
     def __init__(self, root):
         super().__init__(root, padding="3 3 12 12")
         self.root = root
-        self.grid(column=0, row=0, sticky='NWES')
+        # self.grid(column=0, row=0, sticky='NWES')
+        self.pack()
 
 
         # Styles
