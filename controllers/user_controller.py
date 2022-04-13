@@ -1,15 +1,21 @@
 import tkinter.messagebox
 
 from Exceptions.usererror import EmailNotFoundError, IncorrectPasswordError, EmailExistsError, UsernameExistsError
+from controllers.blog_controller import BlogController
 from controllers.home_controller import HomeController
+from dao.blog_repo import BlogRepository
+from dao.post_repo import PostRepository
 from entity.blogger import Blogger
 from entity.user_enums import Gender
+from services.blog_management import BlogManagementService
 from services.login_service import Login
 from services.register_service import RegistrationService
+from services.uuidgenerator import UuidGenerator
+from views.commands.blog_commands import AddBlogCommand, ShowAddBlogCommand
 from views.commands.login_user import LoginUserCommand
 from views.commands.register_user import RegisterUserCommand
 from views.components.item_form import ItemForm
-from views.components.logged_in_menu import LoggedInFrame
+from views.components.logged_in_view import LoggedInFrame
 from views.components.login_form import LoginForm
 
 
@@ -51,4 +57,14 @@ class UserController:
             # tkinter.messagebox.showinfo(title='Login Successful', message=f'Hello {user.username}')
             parent = self.view.container
             self.view.destroy()
-            home_contr = HomeController(view=LoggedInFrame(parent, command=None, user=user))
+            idgen = UuidGenerator()
+            blog_repo = BlogRepository(idgen, 'blogs.json')
+            post_repo = PostRepository(idgen, 'posts.json')
+            blog_service = BlogManagementService(blog_repo, post_repo)
+            blog_controller = BlogController(blog_service, self.view.container)
+            command_add_blog = AddBlogCommand(blog_controller)
+            show_add_blog = ShowAddBlogCommand(blog_controller, user)
+            home_contr = HomeController(
+                view=LoggedInFrame(parent, show_add_command=show_add_blog,
+                                   add_blog_command=command_add_blog,
+                                   user=user))

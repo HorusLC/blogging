@@ -9,7 +9,8 @@ class BlogManagementService:
         self.post_repo = post_repo
 
     def add_blog(self, blog, user_id):
-        self.blog_repo.load()
+        #self.blog_repo.load()
+        blog.owner_id=user_id
         blog_created = self.blog_repo.create(blog)
         self.blog_repo.save()
         return blog_created
